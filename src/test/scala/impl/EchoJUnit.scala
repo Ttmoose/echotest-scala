@@ -32,16 +32,16 @@ class EchoJUnit:
     assertEquals("hello hello", (new DoubleEcho).echo("hello"))
 
   @Test
-  def testSimpleEcho(): Unit = {
-    val echo = new SimpleEcho()
-    assertEquals("hello", echo.echo("hello")) // Fix the expected value to match the actual behavior
-  }
+  def testSimpleUsingList: Unit =
+    val echos = List(new SimpleEcho)
+    val result = echos(1).echo("")
+    assertEquals("", result)
 
   @Test
   def testSimpleAlsoUsingList: Unit =
     val echos = List(new SimpleEcho)
     try
-      val result = echos(1).echo("")
+      val result = echos(0).echo("")
       fail("should have gotten an IndexOutOfBoundsException by now!")
     catch
       case ex: IndexOutOfBoundsException => // all good

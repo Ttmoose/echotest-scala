@@ -22,9 +22,10 @@ class EchoTest extends AnyFunSuite:
   test("A double echo should echo twice a nonempty argument"):
     assert((new DoubleEcho).echo("hello") == "hello hello")
 
-  test("DoubleEcho should repeat the input twice"):
-    val echo = new DoubleEcho()
-    assert(echo.echo("hello") == "hello []hello") // Fix the expected value to match the actual behavior 
+  test("A simple echo inside a list should still echo an empty argument"):
+    val echos = List(new SimpleEcho)
+    val result = echos(0).echo("")
+    assert(result == "")
 
   test("A simple echo inside a list used wrong should throw an index-out-of-bounds exception"):
     val echos = List(new SimpleEcho)
